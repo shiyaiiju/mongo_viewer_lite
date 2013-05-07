@@ -1,0 +1,30 @@
+doctype html
+
+html dir="ltr" lang="ja"
+  head
+    meta charset="UTF-8"
+    title MongoDB Viewer
+    link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+
+  body
+    div.container-fluid
+      h1 #{@database_name}
+
+      table class="table-striped table-bordered table-condensed"
+        tr
+          th コレクション名
+          th 行数
+          th 最終更新日
+        - @collection_list.each do |collection|
+            tr
+              td
+                a href="#{collection[:uri]}"
+                  | #{collection[:name]}
+              td
+                | #{collection[:count]}
+              td
+                | #{collection[:time]}
+
+nav
+  a href="/"
+    | DB一覧に戻る

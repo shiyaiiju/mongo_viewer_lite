@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ja">
+<head>
+<meta charset="UTF-8" />
+
+<title>MongoDB Viewer</title>
+
+<link rel='stylesheet' type='text/css' href='/css/bootstrap.min.css'>
+
+</head>
+
+<body>
+
+<h1><%= @database_name %></h1>
+
+<table class='list'>
+<tr>
+	<th>コレクション名</th>
+	<th>行数</th>
+	<th>最終更新日</th>
+</tr>
+<% @collection_list.each do |collection| %>
+	<tr>
+		<td><a href='<%= collection[:uri] %>'><%= collection[:name] %></td>
+		<td><%= collection[:count] %></td>
+		<td><%= collection[:time] %></td>
+	</tr>
+<% end %>
+</table>
+
+
+<div><a href='/'>db一覧に戻る</a></div>
+
+</body>
+</html>

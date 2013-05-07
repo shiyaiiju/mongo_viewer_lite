@@ -1,0 +1,56 @@
+doctype html
+
+html dir="ltr" lang="ja"
+  head
+    meta charset="UTF-8"
+    title MongoDB Viewer
+    link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+    script src="/js/jquery-1.9.1.min.js"
+
+  body
+    div.container-fluid
+      h1 #{@database_name}
+      h2 #{@collection_name}
+
+      table class="table-striped table-bordered table-condensed"
+        tr
+          - @keys.each do |key|
+            th #{key}
+
+        - @rows.each do |row|
+            tr
+              - row.each do |key, val|
+                td
+                  | #{val}
+
+form action="/values/#{@database_name}/#{@collection_name}"
+  dl
+    dt プリセット
+    dd
+      select id="preset"
+        option value="" ■選択して下さい
+        - @filter_presets.each do |filter|
+          option data-name="#{filter[:key]}" data-value="#{filter[:val]}"
+            | #{filter[:comment]}
+    dt 列名
+    dd
+      input type="text" id="f_key" name="f_key" value="#{@f_key}"
+    dt 値
+    dd
+      input type="text" id="f_val" name="f_val" value="#{@f_val}"
+  input type="submit" value="検索"
+
+script
+  |  $('#preset').change(function(){
+  |  var sel = $(this).find("option:selected");
+  |  $('input#f_key').val(sel.attr('data-name'));
+  |  $('input#f_val').val(sel.attr('data-value'));
+  |  })
+nav
+  ul
+    li
+      a href="/collections/#{@database_name}"
+        | collection一覧に戻る
+    li
+      a href="/"
+        | DB一覧に戻る

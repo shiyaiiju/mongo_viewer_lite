@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ja">
+<head>
+<meta charset="UTF-8" />
+
+<title>MongoDB Viewer</title>
+
+<link rel='stylesheet' type='text/css' href='/css/bootstrap.min.css'>
+
+</head>
+
+<body>
+
+<h1>DB選択</h1>
+
+<table class='list'>
+<tr>
+	<th>DB名</th>
+	<th>サイズ</th>
+</tr>
+<% @database_list.each do |database| %>
+<tr>
+	<td><a href='/collections/<%= database[:name] %>'><%= database[:name] %></a></td>
+	<td><%= database[:total_size] %>M</td>
+</tr>
+<% end %>
+</table>
+
+</body>
+</html>

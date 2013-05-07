@@ -1,0 +1,7 @@
+source 'https://rubygems.org'
+gem 'sinatra'
+gem 'mongo'
+gem 'shotgun'
+gem 'slim'
+gem 'bson'
+gem 'bson_ext'

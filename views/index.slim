@@ -1,0 +1,23 @@
+doctype html
+
+html dir="ltr" lang="ja"
+  head
+    meta charset="UTF-8"
+    title MongoDB Viewer
+    link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
+
+  body
+    div.container-fluid
+      h1 DB選択
+
+      table class="table-striped table-bordered table-condensed"
+        tr
+          th DB名
+          th サイズ
+        - @database_list.each do |database|
+            tr
+              td
+                a href="/collections/#{database[:name]}"
+                  | #{database[:name]}
+              td
+                | #{database[:total_size]} M
