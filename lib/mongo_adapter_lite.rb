@@ -28,12 +28,12 @@ module Mongo
       
       database_list = []
       client.database_info.each do |info|
-        #if info[0] != "local"
+        if info[0] != "local"
           database_list.push( {
             :name => info[0],
             :total_size => (info[1] / 1024 / 1024),
           })
-        #end
+        end
       end
       
       return database_list
@@ -47,7 +47,7 @@ module Mongo
       
       collection_list = []
       db_info.collection_names.each do |coll_name|
-        #if /^(?!(system)).*/ =~ coll_name
+        if /^(?!(system)).*/ =~ coll_name
           
           rows = db_info.collection(coll_name).find().sort([:_id, :desc]).limit(1)
           row = rows.next
@@ -59,7 +59,7 @@ module Mongo
             :uri => "/values/#{@database_name}/#{coll_name}",
           })
           
-        #end
+        end
       end
       
       return collection_list
@@ -90,11 +90,11 @@ module Mongo
       finds.each{ |row|
         rows.push row
         row.each{ |val|
-          #if val[0] != "_id"
+          if val[0] != "_id"
             if !keys.key?(val[0])
               keys[val[0]] = nil
             end
-          #end
+          end
         }
       }
       
@@ -104,7 +104,9 @@ module Mongo
         #列順に整列
         keys_tmp = keys.clone()
         row.each do |val|
-          keys_tmp[val[0]] = val[1]
+          if val[0] != "_id"
+            keys_tmp[val[0]] = val[1]
+          end
         end
         rows[index] = keys_tmp
       end
