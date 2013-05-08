@@ -5,14 +5,16 @@ html dir="ltr" lang="ja"
     meta charset="UTF-8"
     title MongoDB Viewer
     link rel="stylesheet" type="text/css" href=uri("/css/bootstrap.min.css")
+    link rel="stylesheet" type="text/css" href=uri("/css/application.css")
     script src=uri("/js/jquery-1.9.1.min.js")
+    script src=uri("/js/application.js")
 
   body
     div.container-fluid
       h1 #{@database_name}
       h2 #{@collection_name}
 
-      table class="table-striped table-bordered table-condensed"
+      table class="table-striped table-bordered table-condensed table-hovered"
         tr
           - @keys.each do |key|
             th #{key[0]}
@@ -40,12 +42,6 @@ form action=uri("/values/#{@database_name}/#{@collection_name}")
       input type="text" id="f_val" name="f_val" value="#{@f_val}"
   input type="submit" value="検索"
 
-script
-  |  $('#preset').change(function(){
-  |  var sel = $(this).find("option:selected");
-  |  $('input#f_key').val(sel.attr('data-name'));
-  |  $('input#f_val').val(sel.attr('data-value'));
-  |  })
 nav
   ul
     li

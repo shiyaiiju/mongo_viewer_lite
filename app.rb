@@ -3,6 +3,8 @@ require 'rubygems'
 require "sinatra/base"
 require 'mongo'
 require 'slim'
+require 'sass'
+require 'coffee-script'
 require './lib/mongo_adapter_lite'
 
 include Mongo
@@ -70,7 +72,11 @@ module MongoView
     end
     
     get "/css/application.css" do
-      scss :application
+      sass :application
+    end
+    
+    get "/js/application.js" do
+      coffee :application
     end
     
     
