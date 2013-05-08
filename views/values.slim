@@ -51,6 +51,17 @@ html dir="ltr" lang="ja"
           input class="btn btn-primary" type="submit" value="検索"
           input class="btn" type="button" value="クリア" id="clear"
 
+      div class="pagination pagination-centered"
+        ul
+          li
+            a href=uri("#{@base_uri}&page=#{@page-1}")
+              | Previous
+          li.active
+            a href="#"
+              | #{@page}
+          li
+            a href=uri("#{@base_uri}&page=#{@page+1}")
+              | Next
 
       table class="table-striped table-bordered table-condensed table-hover"
         tr
@@ -66,13 +77,13 @@ html dir="ltr" lang="ja"
       div class="pagination pagination-centered"
         ul
           li
-            a href=uri("#{@base_uri}?page=#{@page-1}")
+            a href=uri("#{@base_uri}&page=#{@page-1}")
               | Previous
           li.active
             a href="#"
               | #{@page}
           li
-            a href=uri("#{@base_uri}?page=#{@page+1}")
+            a href=uri("#{@base_uri}&page=#{@page+1}")
               | Next
       
       

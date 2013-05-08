@@ -64,7 +64,12 @@ module MongoView
       @keys, @rows = adapter.parse_finds(finds)
 
 
-      @base_uri = "/values/#{@database_name}/#{@collection_name}"
+      @base_uri = sprintf(
+        "/values/%s/%s?f_key=%s&f_val=%s",
+        @database_name,
+        @collection_name,
+        URI.escape(@f_key),
+        URI.escape(@f_val))
 
       @filter_presets = get_filter_presets
 
