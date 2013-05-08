@@ -56,7 +56,7 @@ module Mongo
             :name => coll_name,
             :count => rows.count.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1,'),
             :time => (row.member?("time") ? row["time"] : "nil"),
-            :uri => "./values/#{@database_name}/#{coll_name}",
+            :uri => "/values/#{@database_name}/#{coll_name}",
           })
           
         #end

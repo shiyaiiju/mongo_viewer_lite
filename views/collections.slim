@@ -4,7 +4,7 @@ html dir="ltr" lang="ja"
   head
     meta charset="UTF-8"
     title MongoDB Viewer
-    link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"
+    link rel="stylesheet" type="text/css" href=uri("css/bootstrap.min.css")
 
   body
     div.container-fluid
@@ -18,7 +18,7 @@ html dir="ltr" lang="ja"
         - @collection_list.each do |collection|
             tr
               td
-                a href="#{collection[:uri]}"
+                a href=uri("#{collection[:uri]}")
                   | #{collection[:name]}
               td
                 | #{collection[:count]}
@@ -26,5 +26,5 @@ html dir="ltr" lang="ja"
                 | #{collection[:time]}
 
 nav
-  a href="./"
+  a href=uri("/")
     | DB一覧に戻る

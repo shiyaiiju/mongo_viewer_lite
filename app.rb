@@ -63,7 +63,7 @@ module MongoView
       @keys, @rows = adapter.parse_finds(finds)
 
 
-      @base_uri = "./values/#{@database_name}/#{@collection_name}"
+      @base_uri = "/values/#{@database_name}/#{@collection_name}"
 
       @filter_presets = get_filter_presets
 

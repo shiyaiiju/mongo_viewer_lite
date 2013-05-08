@@ -4,7 +4,7 @@ html dir="ltr" lang="ja"
   head
     meta charset="UTF-8"
     title MongoDB Viewer
-    link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"
+    link rel="stylesheet" type="text/css" href=uri("/css/bootstrap.min.css")
 
   body
     div.container-fluid
@@ -17,7 +17,7 @@ html dir="ltr" lang="ja"
         - @database_list.each do |database|
             tr
               td
-                a href="./collections/#{database[:name]}"
+                a href=uri("/collections/#{database[:name]}")
                   | #{database[:name]}
               td
                 | #{database[:total_size]} M
