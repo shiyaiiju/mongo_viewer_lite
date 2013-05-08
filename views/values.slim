@@ -23,7 +23,7 @@ html dir="ltr" lang="ja"
                 td
                   | #{val}
 
-form action="/values/#{@database_name}/#{@collection_name}"
+form action=uri("/values/#{@database_name}/#{@collection_name}")
   dl
     dt プリセット
     dd
