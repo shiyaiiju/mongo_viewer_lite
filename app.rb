@@ -48,11 +48,9 @@ module MongoView
       @f_key = params["f_key"].to_s rescue ""
       @f_val = params["f_val"].to_s rescue ""
 
-      p @page
-
       where = nil
       if @f_key != ""
-        where = {:filter_key => Regexp.new(@f_val)}
+        where = {@f_key => Regexp.new(@f_val)}
       end
 
 
