@@ -11,10 +11,48 @@ html dir="ltr" lang="ja"
 
   body
     div.container-fluid
-      h1 #{@database_name}
-      h2 #{@collection_name}
 
-      table class="table-striped table-bordered table-condensed table-hovered"
+      nav
+        ul.breadcrumb
+          li
+            a href=uri("/")
+              | DB一覧
+            span.divider >>
+          li
+            a href=uri("/collections/#{@database_name}")
+              | #{@database_name}
+            span.divider >>
+          li.active
+            | #{@collection_name}
+
+      form action=uri("/values/#{@database_name}/#{@collection_name}") class="form-horizontal well well-small"
+        legend 検索条件
+        div.control-group
+          label.control-label
+            | プリセット
+          div.controls
+            select id="preset"
+              option value="" ■選択して下さい
+              - @filter_presets.each do |filter|
+                option data-name="#{filter[:key]}" data-value="#{filter[:val]}"
+                  | #{filter[:comment]}
+
+          label.control-label
+            | 列名
+          div.controls
+            input type="text" id="f_key" name="f_key" value="#{@f_key}"
+
+          label.control-label
+            | 値
+          div.controls
+            input type="text" id="f_val" name="f_val" value="#{@f_val}"
+
+        div.form-actions
+          input class="btn btn-primary" type="submit" value="検索"
+          input class="btn" type="button" value="クリア" id="clear"
+
+
+      table class="table-striped table-bordered table-condensed table-hover"
         tr
           - @keys.each do |key|
             th #{key[0]}
@@ -25,28 +63,28 @@ html dir="ltr" lang="ja"
                 td
                   | #{val}
 
-form action=uri("/values/#{@database_name}/#{@collection_name}")
-  dl
-    dt プリセット
-    dd
-      select id="preset"
-        option value="" ■選択して下さい
-        - @filter_presets.each do |filter|
-          option data-name="#{filter[:key]}" data-value="#{filter[:val]}"
-            | #{filter[:comment]}
-    dt 列名
-    dd
-      input type="text" id="f_key" name="f_key" value="#{@f_key}"
-    dt 値
-    dd
-      input type="text" id="f_val" name="f_val" value="#{@f_val}"
-  input type="submit" value="検索"
-
-nav
-  ul
-    li
-      a href=uri("/collections/#{@database_name}")
-        | collection一覧に戻る
-    li
-      a href=uri("/")
-        | DB一覧に戻る
+      div class="pagination pagination-centered"
+        ul
+          li
+            a href=uri("#{@base_uri}?page=#{@page-1}")
+              | Previous
+          li.active
+            a href="#"
+              | #{@page}
+          li
+            a href=uri("#{@base_uri}?page=#{@page+1}")
+              | Next
+      
+      
+      nav
+        ul.breadcrumb
+          li
+            a href=uri("/")
+              | DB一覧
+            span.divider >>
+          li
+            a href=uri("/collections/#{@database_name}")
+              | #{@database_name}
+            span.divider >>
+          li.active
+            | #{@collection_name}

@@ -52,10 +52,11 @@ module Mongo
           rows = db_info.collection(coll_name).find().sort([:_id, :desc]).limit(1)
           row = rows.next
 
+          row["time"] = row["time"].getlocal.strftime('%Y-%m-%d %H:%M:%S') rescue "nil"
           collection_list.push({
             :name => coll_name,
             :count => rows.count.to_s.gsub(/(\d)(?=(\d{3})+(?!\d))/, '\1,'),
-            :time => (row.member?("time") ? row["time"] : "nil"),
+            :time => row["time"],
             :uri => "/values/#{@database_name}/#{coll_name}",
           })
           
@@ -105,7 +106,7 @@ module Mongo
         keys_tmp = keys.clone()
         row.each do |val|
           if val[0] != "_id"
-            keys_tmp[val[0]] = val[1]
+            keys_tmp[val[0]] = val[1].getlocal.strftime('%Y-%m-%d %H:%M:%S') rescue val[1]
           end
         end
         rows[index] = keys_tmp

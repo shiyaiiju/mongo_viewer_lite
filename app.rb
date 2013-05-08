@@ -47,6 +47,7 @@ module MongoView
       @collection_name = params[:collection_name]
 
       @page = params["page"].to_s.to_i rescue 1
+      @page > 0 || @page = 1
       @f_key = params["f_key"].to_s rescue ""
       @f_val = params["f_val"].to_s rescue ""
 

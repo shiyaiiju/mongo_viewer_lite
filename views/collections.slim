@@ -4,27 +4,43 @@ html dir="ltr" lang="ja"
   head
     meta charset="UTF-8"
     title MongoDB Viewer
-    link rel="stylesheet" type="text/css" href=uri("css/bootstrap.min.css")
+    link rel="stylesheet" type="text/css" href=uri("/css/bootstrap.min.css")
+    link rel="stylesheet" type="text/css" href=uri("/css/application.css")
+    script src=uri("/js/jquery-1.9.1.min.js")
+    script src=uri("/js/application.js")
 
   body
     div.container-fluid
-      h1 #{@database_name}
+      nav
+        ul.breadcrumb
+          li
+            a href=uri("/")
+              | DB一覧
+            span.divider >>
+          li.active
+            | #{@database_name}
 
-      table class="table-striped table-bordered table-condensed"
-        tr
-          th コレクション名
-          th 行数
-          th 最終更新日
-        - @collection_list.each do |collection|
-            tr
-              td
-                a href=uri("#{collection[:uri]}")
-                  | #{collection[:name]}
-              td
-                | #{collection[:count]}
-              td
-                | #{collection[:time]}
+      section
+        table class="table-striped table-bordered table-condensed"
+          tr
+            th コレクション名
+            th 行数
+            th 最終更新日
+          - @collection_list.each do |collection|
+              tr
+                td
+                  a href=uri("#{collection[:uri]}")
+                    | #{collection[:name]}
+                td
+                  | #{collection[:count]}
+                td
+                  | #{collection[:time]}
 
-nav
-  a href=uri("/")
-    | DB一覧に戻る
+      nav
+        ul.breadcrumb
+          li
+            a href=uri("/")
+              | DB一覧
+            span.divider >>
+          li.active
+            | #{@database_name}

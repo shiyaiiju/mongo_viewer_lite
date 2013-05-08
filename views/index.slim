@@ -5,19 +5,31 @@ html dir="ltr" lang="ja"
     meta charset="UTF-8"
     title MongoDB Viewer
     link rel="stylesheet" type="text/css" href=uri("/css/bootstrap.min.css")
+    link rel="stylesheet" type="text/css" href=uri("/css/application.css")
+    script src=uri("/js/jquery-1.9.1.min.js")
+    script src=uri("/js/application.js")
 
   body
     div.container-fluid
-      h1 DB選択
+      nav
+        ul.breadcrumb
+          li.active
+            | DB一覧
 
-      table class="table-striped table-bordered table-condensed"
-        tr
-          th DB名
-          th サイズ
-        - @database_list.each do |database|
-            tr
-              td
-                a href=uri("/collections/#{database[:name]}")
-                  | #{database[:name]}
-              td
-                | #{database[:total_size]} M
+      section
+        table class="table-striped table-bordered table-condensed"
+          tr
+            th DB名
+            th サイズ
+          - @database_list.each do |database|
+              tr
+                td
+                  a href=uri("/collections/#{database[:name]}")
+                    | #{database[:name]}
+                td
+                  | #{database[:total_size]} M
+
+      nav
+        ul.breadcrumb
+          li.active
+            | DB一覧
