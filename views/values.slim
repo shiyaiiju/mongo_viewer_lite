@@ -4,8 +4,8 @@ html dir="ltr" lang="ja"
   head
     meta charset="UTF-8"
     title MongoDB Viewer
-    link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css"
-    script src="/js/jquery-1.9.1.min.js"
+    link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css"
+    script src="./js/jquery-1.9.1.min.js"
 
   body
     div.container-fluid
@@ -23,7 +23,7 @@ html dir="ltr" lang="ja"
                 td
                   | #{val}
 
-form action="/values/#{@database_name}/#{@collection_name}"
+form action="./values/#{@database_name}/#{@collection_name}"
   dl
     dt プリセット
     dd
@@ -49,8 +49,8 @@ script
 nav
   ul
     li
-      a href="/collections/#{@database_name}"
+      a href="./collections/#{@database_name}"
         | collection一覧に戻る
     li
-      a href="/"
+      a href="./"
         | DB一覧に戻る
