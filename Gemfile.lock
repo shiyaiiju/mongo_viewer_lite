@@ -10,12 +10,14 @@ GEM
     coffee-script-source (1.6.2)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    libv8 (3.11.8.17)
     mongo (1.8.5)
       bson (~> 1.8.5)
     multi_json (1.7.3)
     rack (1.5.2)
     rack-protection (1.5.0)
       rack
+    ref (1.0.4)
     sass (3.2.8)
     shotgun (0.9)
       rack (>= 1.0)
@@ -27,6 +29,9 @@ GEM
       temple (~> 0.3.0)
       tilt (~> 1.2)
     temple (0.3.5)
+    therubyracer (0.11.4)
+      libv8 (~> 3.11.8.12)
+      ref
     tilt (1.4.0)
 
 PLATFORMS
@@ -36,8 +41,10 @@ DEPENDENCIES
   bson
   bson_ext
   coffee-script
+  execjs
   mongo
   sass
   shotgun
   sinatra
   slim
+  therubyracer
